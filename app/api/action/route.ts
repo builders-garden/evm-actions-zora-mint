@@ -15,9 +15,15 @@ export const GET = async (req: NextRequest) => {
       },
       {
         targetUrl: `${appURL()}/api/signature`,
-        postUrl: appURL(),
+        postUrl: `${appURL()}/api/signature/success`,
         label: "Signature",
         type: ActionLinkType.SIGNATURE,
+      },
+      {
+        targetUrl: `${appURL()}/api/one-click-login`,
+        loginUrl: appURL(),
+        label: "1-click login",
+        type: ActionLinkType.ONE_CLICK_LOGIN,
       },
       {
         targetUrl: `https://builders.garden`,

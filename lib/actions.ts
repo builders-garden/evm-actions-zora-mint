@@ -8,11 +8,13 @@ enum ActionLinkType {
   TX = "tx",
   SIGNATURE = "signature",
   LINK = "link",
+  ONE_CLICK_LOGIN = "one-click-login",
 }
 
 interface ActionLink {
   targetUrl: string; // URL that will be opened when the action is clicked
   postUrl?: string; // POST URL that will be called after the action has been executed
+  loginUrl?: string; // GET URL that will be opened when the action is clicked with appropriate query parameters
   label: string; // Label for the action
   type: ActionLinkType; // Type of action
   inputFields?: ActionInputFields[]; // Action parameters
