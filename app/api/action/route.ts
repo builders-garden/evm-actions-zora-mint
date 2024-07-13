@@ -3,8 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (req: NextRequest) => {
   const evmActionMetadata: EVMAction = {
-    title: "Sample EVM Action",
-    description: "This is a sample EVM Action",
+    title: "Mint Zora NFTs EVM Action",
+    description: "This is a sample EVM Action for minting ERC1155 Zora tokens",
     image: "https://placehold.co/955x500",
     links: [
       {
@@ -12,23 +12,6 @@ export const GET = async (req: NextRequest) => {
         postUrl: `${appURL()}/tx-success`, // this will be a GET HTTP call
         label: "Tx",
         type: ActionLinkType.TX,
-      },
-      {
-        targetUrl: `${appURL()}/api/signature`,
-        postUrl: `${appURL()}/api/signature/success`, // this will be a POST HTTP call
-        label: "Signature",
-        type: ActionLinkType.SIGNATURE,
-      },
-      {
-        targetUrl: `${appURL()}/api/one-click-login`,
-        loginUrl: appURL(), // this will be a GET HTTP call
-        label: "1-click login",
-        type: ActionLinkType.ONE_CLICK_LOGIN,
-      },
-      {
-        targetUrl: `https://builders.garden`,
-        label: "Link",
-        type: ActionLinkType.LINK,
       },
     ],
     label: "Sample Button",
