@@ -8,7 +8,6 @@ import { ERC1155_CONTRACT_ABI, ZORA_FIXED_PRICE_STRATEGY_ABI, ZORA_MERKLE_MINT_S
 import { utils } from "ethers";
 
 export const POST = async (req: NextRequest) => {
-  //https://zora.co/collect/base:0xa0487df3ab7a9e7ba2fd6bb9acda217d0930217b/48
   const body = await req.json();
   const { address } = body;
   const { searchParams } = new URL(req.url);
@@ -16,7 +15,7 @@ export const POST = async (req: NextRequest) => {
   const tokenId = searchParams.get('tokenId');
   const amount = searchParams.get('amount');
 
-  const { params} = await mint1155(
+  const { params } = await mint1155(
     collectionAddress!,
     tokenId!,
     address,
@@ -29,9 +28,9 @@ export const POST = async (req: NextRequest) => {
   return NextResponse.json({
     transactions: [
       {
-      chainId: base.id, // Base Mainnet 8453
-      to: params.to,
-      data: params.data,
+      chainId: `${base.id}`, // Base Mainnet 8453
+      to: params.to as `0x${string}`,
+      data: params.data as `0x${string}`,
       value: params.value,
       },
     ]
