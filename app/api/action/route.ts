@@ -14,7 +14,7 @@ export const GET = async (req: NextRequest) => {
         type: ActionLinkType.TX,
       },
     ],
-    label: "Sample Button",
+    label: "Mint NFT",
   };
   return NextResponse.json(evmActionMetadata);
 };
