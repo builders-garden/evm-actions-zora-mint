@@ -8,6 +8,7 @@ import { ERC1155_CONTRACT_ABI, ZORA_FIXED_PRICE_STRATEGY_ABI, ZORA_MERKLE_MINT_S
 import { utils } from "ethers";
 
 
+
 export const POST = async (req: NextRequest) => {
   //https://zora.co/collect/base:0xa0487df3ab7a9e7ba2fd6bb9acda217d0930217b/48
   const body = await req.json();
@@ -28,9 +29,14 @@ export const POST = async (req: NextRequest) => {
   }
 
   return NextResponse.json({
-    chainId: `eip155:${baseSepolia.id}`, // Base Mainnet 8453
-    method: "eth_sendTransaction",
-    params: params,
+    transactions: [
+      {
+      chainId: base.id, // Base Mainnet 8453
+      to: params.to,
+      data: params.data,
+      value: params.value,
+      },
+    ]
   });
 };
 // function to mint ERC1155 Zora tokens
@@ -39,7 +45,7 @@ export async function mint1155(
   tokenId: string,
   fromAddress: string,
   amount?: string
-): Promise<{ chainId: string; method: string; params: any }> {
+): Promise<{ params: any }> {
   if (!collectionAddress || !tokenId || !fromAddress) {
     throw new Error("Invalid mint parameters");
   }
@@ -98,8 +104,6 @@ export async function mint1155(
     });
 
     return {
-      chainId: "eip155:".concat(base.id.toString()),
-      method: "eth_sendTransaction",
       params: {
         abi: ERC1155_CONTRACT_ABI,
         to: collectionAddress as `0x${string}`,
