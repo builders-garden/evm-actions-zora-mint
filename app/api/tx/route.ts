@@ -7,8 +7,6 @@ import { FIXED_PRICE_SALE_STRATEGY, MERKLE_MINT_SALE_STRATEGY, NATIVE_TOKEN } fr
 import { ERC1155_CONTRACT_ABI, ZORA_FIXED_PRICE_STRATEGY_ABI, ZORA_MERKLE_MINT_STRATEGY_ABI } from "@/lib/abis";
 import { utils } from "ethers";
 
-
-
 export const POST = async (req: NextRequest) => {
   //https://zora.co/collect/base:0xa0487df3ab7a9e7ba2fd6bb9acda217d0930217b/48
   const body = await req.json();
